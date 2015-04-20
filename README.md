@@ -12,15 +12,17 @@ percentile, 90 --> 90th percentile, 99.9 --> 99.9th percentile.
 ##My Approach
 Create a Ruby Histogram class that has two public methods:
 
-add_value(value) & percentile?(value)
+<b>add_value(value)</b> & <b>percentile?(value)</b>
 
 The first method will take in a value and determine the range or the interval that the number belongs to.
 Here is some sample code for determining the interval:
 
 low_end = value / 100 * 100
+
 high_end = ((value + 99) / 100 * 100) -1
+
 [low_end, high_end]
 
 This will be stored as a key and incremented each time a number is added to this bucket.
 
-When the user calls percentile?(value) he or she will pass in a value and the function will return a percentage of values that are including and below this interval. 
+When the user calls <b>percentile?(value)</b> he or she will pass in a value and the function will return a percentage of values that are including and below this interval.
