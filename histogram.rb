@@ -5,12 +5,18 @@ class Histogram
     @histogram_hash = {}
   end
 
+  # I created a hash that is going to store interavals as keys
+  # and number of value occurances as values
   def add_value(value)
     key = generate_key(value)
     @histogram_hash.has_key?(key) ? @histogram_hash[key] += 1 : @histogram_hash[key] = 1
     @total_item_count += 1
   end
 
+  #When the user enters a value, the method will
+  # return what precentile of values are less than or equal to the interval.
+  # Ex. if we entered 512 as the value based on the cases below, the returned
+  # value would be 27.3% because there are 3 values our of 11 that are less than or equal
   def percentile?(value)
     hash_key = generate_key(value)
 
@@ -21,7 +27,8 @@ class Histogram
         count += value
       end
     end
-    return count / @total_item_count * 100
+    answer = count / @total_item_count * 100
+    return answer.round(1)
   end
 
   private
@@ -37,7 +44,6 @@ class Histogram
 end
 
 set1 = Histogram.new
-
 set1.add_value(430)
 set1.add_value(512)
 set1.add_value(851)
@@ -49,4 +55,4 @@ set1.add_value(989)
 set1.add_value(909)
 set1.add_value(177)
 set1.add_value(13709)
-puts set1.percentile?(900)
+puts set1.percentile?(512)
